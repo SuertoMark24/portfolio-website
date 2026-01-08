@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import profilePhoto from '../assets/images/formal.jpg'
+import profilePhoto from '../assets/images/formal2.png'
 
 const skills = [
   { name: 'ASP.NET Core', level: 95 },
