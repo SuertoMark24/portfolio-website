@@ -3,6 +3,25 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import profilePhoto from '../assets/images/formal2.png'
 
+// Tech Stack Icons
+import teamsIcon from '../assets/images/icons/teams.png'
+import uptickIcon from '../assets/images/icons/uptick.png'
+import zbuyerIcon from '../assets/images/icons/zbuyer.png'
+import outlookIcon from '../assets/images/icons/outlook.png'
+import postmanIcon from '../assets/images/icons/postman-icon-svgrepo-com.svg'
+import dotnetIcon from '../assets/images/icons/dotnet-svgrepo-com.svg'
+import mvcIcon from '../assets/images/icons/MVC-Logo.jpg'
+
+const techStack = [
+  { name: 'Microsoft Teams', icon: teamsIcon },
+  { name: 'Uptick', icon: uptickIcon },
+  { name: 'Zbuyer', icon: zbuyerIcon },
+  { name: 'Outlook', icon: outlookIcon },
+  { name: 'Postman', icon: postmanIcon },
+  { name: '.NET', icon: dotnetIcon },
+  { name: 'MVC', icon: mvcIcon },
+]
+
 const skills = [
   { name: 'ASP.NET Core', level: 95 },
   { name: 'C#', level: 95 },
@@ -180,6 +199,43 @@ export default function About() {
               <p className="text-warm-600">{stat.label}</p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Tech Stack */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="mt-16"
+        >
+          <motion.h3
+            variants={itemVariants}
+            className="text-center text-2xl font-bold text-warm-900 mb-8"
+          >
+            Apps & Technologies I Work With
+          </motion.h3>
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center items-center gap-8 md:gap-12"
+          >
+            {techStack.map((tech) => (
+              <motion.div
+                key={tech.name}
+                className="flex flex-col items-center gap-2"
+                whileHover={{ scale: 1.1, y: -5 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-xl shadow-sm p-3 flex items-center justify-center">
+                  <img
+                    src={tech.icon}
+                    alt={tech.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-sm text-warm-600 font-medium">{tech.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>
