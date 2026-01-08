@@ -100,7 +100,7 @@ export default function Projects() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-accent font-medium mb-4 block">Portfolio</span>
+          <span className="text-accent font-medium mb-4 block">Projects</span>
           <h2 className="text-4xl lg:text-5xl font-bold text-warm-900 mb-6">
             Featured <span className="text-accent">Projects</span>
           </h2>
