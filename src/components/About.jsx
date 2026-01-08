@@ -4,18 +4,12 @@ import { useRef } from 'react'
 import profilePhoto from '../assets/images/formal2.png'
 
 // Tech Stack Icons
-import teamsIcon from '../assets/images/icons/teams.png'
-import uptickIcon from '../assets/images/icons/uptick.png'
-import zbuyerIcon from '../assets/images/icons/zbuyer.png'
 import outlookIcon from '../assets/images/icons/outlook.png'
 import postmanIcon from '../assets/images/icons/postman-icon-svgrepo-com.svg'
 import dotnetIcon from '../assets/images/icons/dotnet-svgrepo-com.svg'
 import mvcIcon from '../assets/images/icons/MVC-Logo.jpg'
 
 const techStack = [
-  { name: 'Microsoft Teams', icon: teamsIcon },
-  { name: 'Uptick', icon: uptickIcon },
-  { name: 'Zbuyer', icon: zbuyerIcon },
   { name: 'Outlook', icon: outlookIcon },
   { name: 'Postman', icon: postmanIcon },
   { name: '.NET', icon: dotnetIcon },
