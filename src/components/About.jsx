@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import profilePhoto from '../assets/images/formal2.png'
+import profilePhoto from '../assets/images/me.png'
 
 // Tech Stack Icons
 import outlookIcon from '../assets/images/icons/outlook.png'
