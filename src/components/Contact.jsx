@@ -1,5 +1,13 @@
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
+
+// Web3Forms public access key — safe for client-side code per their docs.
+// To rotate, get a new one at https://web3forms.com or override via VITE_WEB3FORMS_KEY env var.
+const WEB3FORMS_ACCESS_KEY =
+  import.meta.env.VITE_WEB3FORMS_KEY || '64e056f2-6c5d-47ad-bd25-472b4bb1edb5'
+
+const MY_EMAIL = 'markanthonysuerto.work@gmail.com'
+const MY_PHONE = '+63 938 294 7924'
 
 const contactInfo = [
   {
@@ -9,8 +17,8 @@ const contactInfo = [
       </svg>
     ),
     label: 'Email',
-    value: 'markanthony.suerto@email.com',
-    href: 'mailto:markanthony.suerto@email.com',
+    value: MY_EMAIL,
+    href: `mailto:${MY_EMAIL}`,
   },
   {
     icon: (
@@ -19,8 +27,8 @@ const contactInfo = [
       </svg>
     ),
     label: 'Phone',
-    value: '+63 XXX XXX XXXX',
-    href: 'tel:+63XXXXXXXXXX',
+    value: MY_PHONE,
+    href: `tel:${MY_PHONE.replace(/\s/g, '')}`,
   },
   {
     icon: (
@@ -30,16 +38,22 @@ const contactInfo = [
       </svg>
     ),
     label: 'Location',
-    value: 'Philippines',
+    value: 'Negros Occidental, Philippines',
     href: '#',
   },
 ]
 
 const socialLinks = [
-  { name: 'GitHub', href: '#', icon: 'M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z' },
-  { name: 'LinkedIn', href: '#', icon: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z' },
-  { name: 'Twitter', href: '#', icon: 'M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z' },
-  { name: 'Dribbble', href: '#', icon: 'M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.814zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.825 0-1.63.1-2.4.285zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z' },
+  {
+    name: 'GitHub',
+    href: 'https://github.com/markanthonysuerto',
+    icon: 'M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z',
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/mark-anthony-suerto-6a06881bb/',
+    icon: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z',
+  },
 ]
 
 export default function Contact() {
@@ -52,17 +66,61 @@ export default function Contact() {
     message: '',
   })
   const [focused, setFocused] = useState(null)
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
-    setFormState({ name: '', email: '', subject: '', message: '' })
+
+    // Guard if the key hasn't been set yet
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+      setStatus('error')
+      setErrorMsg(
+        'Form not yet configured. Get a free key at web3forms.com and paste it in Contact.jsx.'
+      )
+      return
+    }
+
+    setStatus('sending')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          from_name: 'Portfolio Contact Form',
+          // Optional: a honeypot field to deter bots; leave empty
+          botcheck: '',
+        }),
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        setStatus('success')
+        setFormState({ name: '', email: '', subject: '', message: '' })
+        setTimeout(() => setStatus('idle'), 5000)
+      } else {
+        setStatus('error')
+        setErrorMsg(data.message || 'Something went wrong. Please try again.')
+      }
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg('Network error. Please email me directly: ' + MY_EMAIL)
+    }
   }
 
   const containerVariants = {
@@ -131,7 +189,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-warm-500 text-sm mb-1">{info.label}</p>
-                  <p className="text-warm-900 font-medium group-hover:text-accent transition-colors">
+                  <p className="text-warm-900 font-medium group-hover:text-accent transition-colors break-all">
                     {info.value}
                   </p>
                 </div>
@@ -146,6 +204,9 @@ export default function Contact() {
                   <motion.a
                     key={social.name}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
                     className="w-12 h-12 bg-warm-100 rounded-full flex items-center justify-center text-warm-600 hover:bg-accent hover:text-white transition-colors"
                     whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.9 }}
@@ -162,6 +223,15 @@ export default function Contact() {
           {/* Contact Form */}
           <motion.div variants={itemVariants} className="lg:col-span-3">
             <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 shadow-sm">
+              {/* Honeypot — bots fill this, real users don't see it */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex="-1"
+                autoComplete="off"
+                style={{ display: 'none' }}
+              />
+
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="relative">
                   <motion.label
@@ -182,6 +252,7 @@ export default function Contact() {
                     onBlur={() => setFocused(null)}
                     className="w-full pt-6 pb-2 px-4 bg-warm-50 rounded-xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all"
                     required
+                    disabled={status === 'sending'}
                   />
                 </div>
                 <div className="relative">
@@ -203,6 +274,7 @@ export default function Contact() {
                     onBlur={() => setFocused(null)}
                     className="w-full pt-6 pb-2 px-4 bg-warm-50 rounded-xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all"
                     required
+                    disabled={status === 'sending'}
                   />
                 </div>
               </div>
@@ -226,6 +298,7 @@ export default function Contact() {
                   onBlur={() => setFocused(null)}
                   className="w-full pt-6 pb-2 px-4 bg-warm-50 rounded-xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all"
                   required
+                  disabled={status === 'sending'}
                 />
               </div>
 
@@ -248,24 +321,62 @@ export default function Contact() {
                   rows={5}
                   className="w-full pt-6 pb-2 px-4 bg-warm-50 rounded-xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all resize-none"
                   required
+                  disabled={status === 'sending'}
                 />
               </div>
 
+              {/* Status banner */}
+              <AnimatePresence>
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mb-4 px-4 py-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm"
+                  >
+                    {errorMsg}
+                  </motion.div>
+                )}
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mb-4 px-4 py-3 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm flex items-center gap-2"
+                  >
+                    <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Message sent — I'll get back to you soon.
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <motion.button
                 type="submit"
-                className="w-full bg-accent text-white py-4 rounded-xl font-medium text-lg hover:bg-accent-dark transition-colors flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={submitted}
+                className="w-full bg-accent text-white py-4 rounded-xl font-medium text-lg hover:bg-accent-dark transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                whileHover={status === 'idle' ? { scale: 1.02 } : {}}
+                whileTap={status === 'idle' ? { scale: 0.98 } : {}}
+                disabled={status === 'sending' || status === 'success'}
               >
-                {submitted ? (
+                {status === 'sending' && (
+                  <>
+                    <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Sending…
+                  </>
+                )}
+                {status === 'success' && (
                   <>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     Message Sent!
                   </>
-                ) : (
+                )}
+                {(status === 'idle' || status === 'error') && (
                   <>
                     Send Message
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

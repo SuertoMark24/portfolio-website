@@ -16,12 +16,23 @@ const services = [
   {
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
       </svg>
     ),
-    title: 'API Development',
-    description: 'RESTful and GraphQL APIs with robust authentication, documentation, and scalable architecture.',
-    features: ['RESTful Web APIs', 'JWT Authentication', 'Swagger Documentation', 'Rate Limiting'],
+    title: 'Video Editing',
+    description: 'End-to-end video production — cuts, color grading, sound design, and platform-ready edits for social media and brand storytelling.',
+    features: ['Color Grading', 'Short-form Reels & TikTok', 'Sound Design', 'Brand Storytelling'],
+    price: 'Contact for Quote',
+  },
+  {
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+    title: 'AI Automation',
+    description: 'End-to-end content automation pipelines that capture, caption with AI, and publish on schedule to TikTok and Facebook — hands-off workflows that ship while you sleep.',
+    features: ['AI Caption Generation', 'TikTok Auto-Upload', 'Facebook Scheduling', 'Workflow Orchestration (n8n / Playwright)'],
     price: 'Contact for Quote',
   },
   {
@@ -33,17 +44,6 @@ const services = [
     title: 'Database Design',
     description: 'Efficient database architecture with SQL Server, optimized queries, and seamless ORM integration.',
     features: ['SQL Server Design', 'Query Optimization', 'Data Migration', 'Stored Procedures'],
-    price: 'Contact for Quote',
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-      </svg>
-    ),
-    title: 'Azure Cloud Solutions',
-    description: 'Cloud deployment and DevOps with Microsoft Azure, including CI/CD pipelines and infrastructure setup.',
-    features: ['Azure App Services', 'Azure SQL Database', 'CI/CD Pipelines', 'Cloud Architecture'],
     price: 'Contact for Quote',
   },
 ]

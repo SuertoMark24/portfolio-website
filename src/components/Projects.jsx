@@ -1,58 +1,126 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
+import affiearnImg from '../assets/projects/affiearn.webp'
+import motherTrackerImg from '../assets/projects/mother-tracker.webp'
+import captionPublisherImg from '../assets/projects/blazor.webp'
+import jacobsenImg from '../assets/projects/jacobsen.webp'
+import secproImg from '../assets/projects/secpro.webp'
+import nimaliftImg from '../assets/projects/nimalift.webp'
+import pindjImg from '../assets/projects/pindj.webp'
+import apiImg from '../assets/projects/api.webp'
+import cursorGameImg from '../assets/projects/cursor-game.webp'
+import stitchImg from '../assets/projects/stitch.webp'
+import tiktokAutopostImg from '../assets/projects/tiktok-autopost.webp'
 
 const projects = [
   {
-    id: 1,
-    title: 'Enterprise ERP System',
+    id: 'affiearn',
+    title: 'Affiearn',
     category: 'Enterprise Application',
-    description: 'A comprehensive ERP solution with modules for inventory, HR, accounting, and supply chain management.',
-    tags: ['ASP.NET Core', 'SQL Server', 'Azure'],
-    color: 'from-purple-500/20 to-pink-500/20',
+    description: 'Secure affiliate-commission shop where website owners can split ownership and revenue (60/40 commission split). React + Vite frontend consuming a backend REST API.',
+    tags: ['React', 'Vite', 'REST API', 'Commission Split'],
+    color: 'from-amber-500/20 to-rose-500/20',
+    image: affiearnImg,
   },
   {
-    id: 2,
-    title: 'Healthcare Management Portal',
-    category: 'Web Application',
-    description: 'HIPAA-compliant healthcare portal with patient records, appointment scheduling, and billing integration.',
-    tags: ['ASP.NET MVC', 'Entity Framework', 'SignalR'],
-    color: 'from-blue-500/20 to-cyan-500/20',
-  },
-  {
-    id: 3,
-    title: 'E-Commerce Platform',
-    category: 'Web Application',
-    description: 'Scalable e-commerce solution with payment gateway integration, inventory management, and analytics.',
-    tags: ['ASP.NET Core', 'React', 'Stripe API'],
-    color: 'from-orange-500/20 to-red-500/20',
-  },
-  {
-    id: 4,
-    title: 'RESTful API Gateway',
-    category: 'API Development',
-    description: 'Microservices-based API gateway with authentication, rate limiting, and comprehensive documentation.',
-    tags: ['ASP.NET Web API', 'JWT', 'Swagger'],
-    color: 'from-green-500/20 to-teal-500/20',
-  },
-  {
-    id: 5,
-    title: 'Project Management Tool',
-    category: 'SaaS Application',
-    description: 'Agile project management platform with Kanban boards, sprint planning, and team collaboration features.',
-    tags: ['Blazor', 'SQL Server', 'Azure DevOps'],
-    color: 'from-yellow-500/20 to-orange-500/20',
-  },
-  {
-    id: 6,
-    title: 'Financial Reporting System',
+    id: 'mother-tracker',
+    title: 'Mother Tracker',
     category: 'Enterprise Application',
-    description: 'Real-time financial reporting dashboard with automated report generation and data visualization.',
-    tags: ['ASP.NET Core', 'Power BI', 'SSRS'],
+    description: 'Housing tracking application that manages property and housing records end-to-end. React + Vite frontend talking to a backend API.',
+    tags: ['React', 'Vite', 'REST API'],
+    color: 'from-cyan-500/20 to-blue-500/20',
+    image: motherTrackerImg,
+  },
+  {
+    id: 'caption-publisher',
+    title: 'AI Caption Publisher',
+    category: 'Enterprise Application',
+    description: 'Backend platform that auto-generates captions with AI and publishes scheduled posts to Facebook through the Graph API. Built on Blazor / .NET for the admin side.',
+    tags: ['Blazor', '.NET', 'Facebook Graph API', 'AI Captions'],
+    color: 'from-violet-500/20 to-fuchsia-500/20',
+    image: captionPublisherImg,
+  },
+  {
+    id: 'jacobsen',
+    title: 'Jacobsen',
+    category: 'Web Application',
+    description: 'Fully integrated e-commerce storefront built on C# MVC. UI/UX crafted in jQuery, HTML, and SCSS — catalog, cart, checkout, and admin workflows.',
+    tags: ['C# MVC', 'jQuery', 'SCSS', 'SQL Server'],
+    color: 'from-emerald-500/20 to-teal-500/20',
+    image: jacobsenImg,
+    url: 'https://jacobsenmobler.dk/',
+  },
+  {
+    id: 'secpro',
+    title: 'SecPro',
+    category: 'Web Application',
+    description: 'Fully integrated e-commerce storefront built on C# MVC. UI/UX crafted in jQuery, HTML, and SCSS — catalog, cart, checkout, and admin workflows.',
+    tags: ['C# MVC', 'jQuery', 'SCSS', 'SQL Server'],
+    color: 'from-slate-500/20 to-gray-500/20',
+    image: secproImg,
+    url: 'https://secpro.dk/',
+  },
+  {
+    id: 'nimalift',
+    title: 'NimaLift',
+    category: 'Web Application',
+    description: 'Fully integrated e-commerce storefront built on C# MVC. UI/UX crafted in jQuery, HTML, and SCSS — catalog, cart, checkout, and admin workflows.',
+    tags: ['C# MVC', 'jQuery', 'SCSS', 'SQL Server'],
+    color: 'from-sky-500/20 to-blue-500/20',
+    image: nimaliftImg,
+    url: 'https://www.nimalift.dk/',
+  },
+  {
+    id: 'pindj',
+    title: 'PinDJ',
+    category: 'Web Application',
+    description: 'Fully integrated e-commerce storefront built on C# MVC. UI/UX crafted in jQuery, HTML, and SCSS — catalog, cart, checkout, and admin workflows.',
+    tags: ['C# MVC', 'jQuery', 'SCSS', 'SQL Server'],
+    color: 'from-fuchsia-500/20 to-pink-500/20',
+    image: pindjImg,
+    url: 'https://pindj.dk/',
+  },
+  {
+    id: 'cursor-game',
+    title: 'Cursor Game',
+    category: 'Web Application',
+    description: 'Browser-based interactive game built with pure HTML and JavaScript — no frameworks, no libraries. Custom game loop, collision detection, and rendering.',
+    tags: ['HTML', 'JavaScript', 'Vanilla JS', 'Canvas'],
+    color: 'from-yellow-500/20 to-amber-500/20',
+    image: cursorGameImg,
+    url: 'https://cursor-trail-destroyer.vercel.app/',
+  },
+  {
+    id: 'stitch',
+    title: 'Stitch',
+    category: 'Web Application',
+    description: 'Modern web app built with Next.js and React — component-driven architecture, server-side rendering, and a fast, animated UI.',
+    tags: ['Next.js', 'React', 'JavaScript', 'Vercel'],
     color: 'from-indigo-500/20 to-purple-500/20',
+    image: stitchImg,
+    url: 'https://stitch-ify.vercel.app/',
+  },
+  {
+    id: 'tiktok-autopost',
+    title: 'TikTok Auto Post',
+    category: 'Web Application',
+    description: 'Automated TikTok posting platform — Blazor admin UI, Playwright-driven browser uploads, and n8n workflows orchestrate scheduling and publishing without manual intervention.',
+    tags: ['Blazor', '.NET', 'Playwright', 'n8n', 'TikTok'],
+    color: 'from-rose-500/20 to-pink-500/20',
+    image: tiktokAutopostImg,
+  },
+  {
+    id: 'rest-api-suite',
+    title: 'REST API Suite',
+    category: 'API Development',
+    description: 'Production REST APIs in C# with Swagger-documented endpoints, JWT authentication, and partner / mobile / ERP integration support. Powers e-commerce backends and admin workflows.',
+    tags: ['C#', 'REST API', 'Swagger', 'JWT', 'SQL Server'],
+    color: 'from-green-500/20 to-emerald-500/20',
+    image: apiImg,
   },
 ]
 
-const categories = ['All', 'Enterprise Application', 'Web Application', 'API Development', 'SaaS Application']
+const categories = ['All', 'Enterprise Application', 'Web Application', 'API Development']
 
 export default function Projects() {
   const ref = useRef(null)
@@ -143,32 +211,45 @@ export default function Projects() {
               onMouseLeave={() => setHoveredProject(null)}
               whileHover={{ y: -10 }}
             >
-              {/* Project Image Placeholder */}
+              {/* Project image — real screenshot if provided, gradient placeholder otherwise */}
               <div className={`aspect-[4/3] bg-gradient-to-br ${project.color} relative overflow-hidden`}>
-                <motion.div
-                  className="absolute inset-0 bg-warm-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={false}
-                  animate={hoveredProject === project.id ? { opacity: 1 } : { opacity: 0 }}
-                >
-                  <motion.button
-                    className="bg-accent text-white px-6 py-3 rounded-full font-medium flex items-center gap-2"
-                    initial={{ scale: 0 }}
-                    animate={hoveredProject === project.id ? { scale: 1 } : { scale: 0 }}
-                    transition={{ type: 'spring', stiffness: 200 }}
-                  >
-                    View Project
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </motion.button>
-                </motion.div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-2xl bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-2xl bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
                   </div>
-                </div>
+                )}
+                {project.url && (
+                  <motion.div
+                    className="absolute inset-0 bg-warm-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={false}
+                    animate={hoveredProject === project.id ? { opacity: 1 } : { opacity: 0 }}
+                  >
+                    <motion.a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-accent text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-accent-dark transition-colors"
+                      initial={{ scale: 0 }}
+                      animate={hoveredProject === project.id ? { scale: 1 } : { scale: 0 }}
+                      transition={{ type: 'spring', stiffness: 200 }}
+                    >
+                      View Project
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </motion.a>
+                  </motion.div>
+                )}
               </div>
 
               {/* Project Info */}

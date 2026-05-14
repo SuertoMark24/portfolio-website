@@ -11,12 +11,62 @@ import outlookIcon from '../assets/images/icons/outlook.png'
 import postmanIcon from '../assets/images/icons/postman-icon-svgrepo-com.svg'
 import dotnetIcon from '../assets/images/icons/dotnet-svgrepo-com.svg'
 import mvcIcon from '../assets/images/icons/MVC-Logo.jpg'
+import nodejsIcon from '../assets/images/icons/nodejs.svg'
+import vscodeIcon from '../assets/images/icons/vscode.svg'
+import visualStudioIcon from '../assets/images/icons/visual-studio.svg'
+import reactIcon from '../assets/images/icons/react-svgrepo-com.svg'
+import angularIcon from '../assets/images/icons/angular-svgrepo-com.svg'
+import blazorIcon from '../assets/images/icons/blazor.svg'
+import phpIcon from '../assets/images/icons/php.svg'
+import sqlIcon from '../assets/images/icons/sql-database-generic-svgrepo-com.svg'
+import claudeIcon from '../assets/images/icons/claude.svg'
+import chatgptIcon from '../assets/images/icons/chatgpt.svg'
+import capcutIcon from '../assets/images/icons/capcut.svg'
+import swaggerIcon from '../assets/images/icons/swagger-svgrepo-com.svg'
+import n8nIcon from '../assets/images/icons/n8n.svg'
+import vegasProIcon from '../assets/images/icons/vegas-pro.svg'
+import premiereProIcon from '../assets/images/icons/premiere-pro.svg'
 
-const techStack = [
-  { name: 'Outlook', icon: outlookIcon },
-  { name: 'Postman', icon: postmanIcon },
-  { name: '.NET', icon: dotnetIcon },
-  { name: 'MVC', icon: mvcIcon },
+const techGroups = [
+  {
+    title: 'Languages & Frameworks',
+    items: [
+      { name: '.NET', icon: dotnetIcon },
+      { name: 'MVC', icon: mvcIcon },
+      { name: 'Blazor', icon: blazorIcon },
+      { name: 'React', icon: reactIcon },
+      { name: 'Angular', icon: angularIcon },
+      { name: 'Node.js', icon: nodejsIcon },
+      { name: 'PHP', icon: phpIcon },
+      { name: 'SQL', icon: sqlIcon },
+    ],
+  },
+  {
+    title: 'Development Tools',
+    items: [
+      { name: 'Visual Studio', icon: visualStudioIcon },
+      { name: 'VS Code', icon: vscodeIcon },
+      { name: 'Postman', icon: postmanIcon },
+      { name: 'Swagger', icon: swaggerIcon },
+      { name: 'Outlook', icon: outlookIcon },
+    ],
+  },
+  {
+    title: 'AI & Automation',
+    items: [
+      { name: 'Claude', icon: claudeIcon },
+      { name: 'ChatGPT', icon: chatgptIcon },
+      { name: 'n8n', icon: n8nIcon },
+    ],
+  },
+  {
+    title: 'Creative',
+    items: [
+      { name: 'Premiere Pro', icon: premiereProIcon },
+      { name: 'Vegas Pro', icon: vegasProIcon },
+      { name: 'CapCut', icon: capcutIcon },
+    ],
+  },
 ]
 
 const skills = [
@@ -25,14 +75,11 @@ const skills = [
   { name: 'SQL Server', level: 90 },
   { name: 'Entity Framework', level: 88 },
   { name: 'React', level: 85 },
-  { name: 'Azure', level: 82 },
 ]
 
 const stats = [
-  { number: '50+', label: 'Projects Completed' },
-  { number: '30+', label: 'Happy Clients' },
+  { number: '15+', label: 'Projects Completed' },
   { number: '5+', label: 'Years Experience' },
-  { number: '10+', label: 'Technologies Mastered' },
 ]
 
 export default function About() {
@@ -185,7 +232,7 @@ export default function About() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24"
+          className="grid grid-cols-2 gap-8 mt-24 max-w-2xl mx-auto"
         >
           {stats.map((stat) => (
             <motion.div
@@ -257,28 +304,43 @@ export default function About() {
           >
             Apps & Technologies I Work With
           </motion.h3>
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap justify-center items-center gap-8 md:gap-12"
-          >
-            {techStack.map((tech) => (
-              <motion.div
-                key={tech.name}
-                className="flex flex-col items-center gap-2"
-                whileHover={{ scale: 1.1, y: -5 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-xl shadow-sm p-3 flex items-center justify-center">
-                  <img
-                    src={tech.icon}
-                    alt={tech.name}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="text-sm text-warm-600 font-medium">{tech.name}</span>
-              </motion.div>
-            ))}
-          </motion.div>
+          {techGroups.map((group, groupIdx) => (
+            <motion.div
+              key={group.title}
+              variants={itemVariants}
+              className={groupIdx > 0 ? 'mt-12' : ''}
+            >
+              {/* Divider with category label */}
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="h-px bg-warm-300 flex-1 max-w-[6rem] md:max-w-[10rem]" />
+                <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold whitespace-nowrap">
+                  {group.title}
+                </span>
+                <div className="h-px bg-warm-300 flex-1 max-w-[6rem] md:max-w-[10rem]" />
+              </div>
+
+              {/* Icons row */}
+              <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+                {group.items.map((tech) => (
+                  <motion.div
+                    key={tech.name}
+                    className="flex flex-col items-center gap-2"
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-xl shadow-sm p-3 flex items-center justify-center">
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-sm text-warm-600 font-medium">{tech.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

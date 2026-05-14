@@ -173,7 +173,7 @@ const doc = new Document({
         bullet('Develop responsive front-end interfaces using HTML, CSS, JavaScript, and React, ensuring consistent UX across desktop and mobile storefronts and admin dashboards.'),
         bullet('Build custom nopCommerce plugins and modules for catalog, pricing, promotions, shipping, tax, and admin workflows, integrating cleanly with the platform’s extensibility model.'),
         bullet('Optimize SQL Server performance — refactoring schemas, stored procedures, indexes, and Entity Framework queries to improve response times across catalog, search, and checkout pages.'),
-        bullet('Manage deployments, environment configuration, and post-release monitoring on IIS and Azure; handle production incident response, hotfix delivery, and database migration safety.'),
+        bullet('Manage deployments, environment configuration, and post-release monitoring on IIS; handle production incident response, hotfix delivery, and database migration safety.'),
         bullet('Collaborate with clients and project managers in an Agile setup — scoping, estimating, and delivering features from requirements gathering through QA and release.'),
 
         jobHeader('Faculty Teacher (Part-time)', '2024'),
@@ -223,7 +223,7 @@ const doc = new Document({
         sectionHeading('Additional Information'),
         labeledBullet('Backend:', 'ASP.NET Core, ASP.NET MVC, Blazor, C#, PHP, Entity Framework Core, SQL Server, Web API, nopCommerce'),
         labeledBullet('Frontend:', 'React, Angular, Blazor, JavaScript, HTML5, CSS3, Tailwind CSS, Framer Motion'),
-        labeledBullet('Cloud & DevOps:', 'Azure App Services, Azure SQL Database, CI/CD pipelines, Git'),
+        labeledBullet('DevOps & Deployment:', 'IIS deployment, CI/CD pipelines, Git, environment configuration, release management'),
         labeledBullet('Video Editing:', 'CapCut, Vegas Pro, Filmora, Adobe Premiere Pro, DaVinci Resolve, FFmpeg, color grading, short-form content'),
         labeledBullet('AI Automation:', 'Node.js, Playwright, OpenAI / Claude APIs, TikTok Upload, Facebook Graph API, scheduled cross-platform publishing'),
         labeledBullet('Tools:', 'Visual Studio, VS Code, Postman, Swagger, Git, Jira'),

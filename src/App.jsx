@@ -7,7 +7,6 @@ import Projects from './components/Projects'
 import VideoWork from './components/VideoWork'
 import Automation from './components/Automation'
 import Services from './components/Services'
-import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
@@ -49,7 +48,6 @@ function Site() {
         <VideoWork />
         <Automation />
         <Services />
-        <Testimonials />
         <Contact />
       </main>
       <Footer />

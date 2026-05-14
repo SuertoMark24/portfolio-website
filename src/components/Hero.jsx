@@ -95,7 +95,7 @@ export default function Hero() {
       >
         <motion.div variants={itemVariants} className="mb-6">
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">
-            Full Stack Engineer | ASP.NET Specialist
+            Full Stack Engineer · Video Editor · AI Automation
           </span>
         </motion.div>
 
@@ -116,8 +116,8 @@ export default function Hero() {
           className="text-lg md:text-xl text-warm-600 max-w-2xl mx-auto mb-10"
         >
           Full Stack Engineer specializing in ASP.NET, C#, and modern web technologies.
-          I build scalable, enterprise-grade applications with clean architecture
-          and robust backend solutions.
+          I also cut video and build AI-driven automation pipelines that ship content
+          to TikTok and Facebook on schedule.
         </motion.p>
 
         <motion.div
