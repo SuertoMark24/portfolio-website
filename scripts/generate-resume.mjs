@@ -165,7 +165,7 @@ const doc = new Document({
         // Work Experience
         sectionHeading('Work Experience'),
 
-        jobHeader('Software Engineer', '2020 – Present'),
+        jobHeader('Software Engineer', '2020 – 2026'),
         companyLine('2DO IT, ERP & WEB SOLUTIONS'),
         bullet('Own end-to-end feature delivery on nopCommerce e-commerce platforms — covering server-side logic in C# / ASP.NET MVC, Razor and React-based storefronts, RESTful Web APIs, and the underlying SQL Server data layer.'),
         labeledBullet('Payment gateways and checkout flows —', 'designed and integrated end-to-end, including third-party provider connections, secure token handling, webhook listeners, order-state reconciliation, and refund and dispute logic.'),
