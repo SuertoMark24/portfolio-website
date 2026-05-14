@@ -1,7 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import profilePhoto from '../assets/images/me.png'
-import resumePdf from '../assets/cv/resume_pdf.pdf'
+import resumePdf from '../assets/cv/resume.pdf'
 
 // Tech Stack Icons
 import outlookIcon from '../assets/images/icons/outlook.png'

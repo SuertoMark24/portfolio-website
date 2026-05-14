@@ -9,6 +9,9 @@ export default function useLenis() {
       smoothWheel: true,
     })
 
+    // Expose so any component (e.g. ScrollToTop) can trigger smooth scrolls.
+    window.__lenis = lenis
+
     let rafId
     const raf = (time) => {
       lenis.raf(time)
@@ -19,6 +22,7 @@ export default function useLenis() {
     return () => {
       cancelAnimationFrame(rafId)
       lenis.destroy()
+      delete window.__lenis
     }
   }, [])
 }

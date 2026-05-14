@@ -11,6 +11,7 @@ import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
+import ScrollToTop from './components/ScrollToTop'
 import CustomCursor from './components/CustomCursor'
 import Loader from './components/Loader'
 import useLenis from './hooks/useLenis'
@@ -52,6 +53,7 @@ function Site() {
         <Contact />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   )
 }
