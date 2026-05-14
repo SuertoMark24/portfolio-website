@@ -16,10 +16,6 @@
   --color-accent-dark: #c96a45;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: var(--font-sans);
   background-color: var(--color-warm-50);

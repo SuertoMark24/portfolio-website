@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
 
 const projects = [
@@ -60,35 +60,26 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [hoveredProject, setHoveredProject] = useState(null)
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+  const numberY = useTransform(scrollYProgress, [0, 1], ['0vh', '70vh'])
+
   const filteredProjects = activeCategory === 'All'
     ? projects
     : projects.filter(p => p.category === activeCategory)
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  }
 
   return (
     <section id="projects" className="py-24 lg:py-32 bg-warm-100/50 relative" ref={ref}>
-      {/* Section number */}
+      {/* Section number — floats with scroll */}
       <motion.div
-        className="absolute left-8 top-32 hidden lg:block"
+        className="absolute left-8 top-32 hidden lg:block pointer-events-none"
         initial={{ opacity: 0, x: -50 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8 }}
+        style={{ y: numberY }}
       >
         <span className="text-8xl font-bold text-warm-200">03</span>
       </motion.div>
@@ -134,18 +125,19 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid — each card reveals as it enters the viewport */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
+          layout
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, idx) => (
             <motion.div
               key={project.id}
-              variants={itemVariants}
               layout
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-15% 0px -15% 0px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: (idx % 3) * 0.08 }}
               className="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}

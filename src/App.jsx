@@ -4,6 +4,8 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Projects from './components/Projects'
+import VideoWork from './components/VideoWork'
+import Automation from './components/Automation'
 import Services from './components/Services'
 import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
@@ -11,6 +13,7 @@ import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import CustomCursor from './components/CustomCursor'
 import Loader from './components/Loader'
+import useLenis from './hooks/useLenis'
 import './index.css'
 
 function App() {
@@ -26,22 +29,29 @@ function App() {
         {loading && <Loader key="loader" onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
-      {!loading && (
-        <>
-          <CustomCursor />
-          <ScrollProgress />
-          <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Projects />
-            <Services />
-            <Testimonials />
-            <Contact />
-          </main>
-          <Footer />
-        </>
-      )}
+      {!loading && <Site />}
+    </>
+  )
+}
+
+function Site() {
+  useLenis()
+  return (
+    <>
+      <CustomCursor />
+      <ScrollProgress />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <VideoWork />
+        <Automation />
+        <Services />
+        <Testimonials />
+        <Contact />
+      </main>
+      <Footer />
     </>
   )
 }

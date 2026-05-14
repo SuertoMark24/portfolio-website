@@ -78,7 +78,7 @@ export default function Services() {
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <span className="text-8xl font-bold text-warm-200">04</span>
+        <span className="text-8xl font-bold text-warm-200">06</span>
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

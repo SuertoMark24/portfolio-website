@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import profilePhoto from '../assets/images/me.png'
+import resumePdf from '../assets/cv/resume_pdf.pdf'
 
 // Tech Stack Icons
 import outlookIcon from '../assets/images/icons/outlook.png'
@@ -36,6 +36,13 @@ export default function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+  const photoY = useTransform(scrollYProgress, [0, 1], ['-40px', '40px'])
+  const numberY = useTransform(scrollYProgress, [0, 1], ['0vh', '70vh'])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -57,12 +64,13 @@ export default function About() {
 
   return (
     <section id="about" className="py-24 lg:py-32 relative" ref={ref}>
-      {/* Section number */}
+      {/* Section number — floats with scroll */}
       <motion.div
-        className="absolute left-8 top-32 hidden lg:block"
+        className="absolute left-8 top-32 hidden lg:block pointer-events-none"
         initial={{ opacity: 0, x: -50 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8 }}
+        style={{ y: numberY }}
       >
         <span className="text-8xl font-bold text-warm-200">02</span>
       </motion.div>
@@ -74,8 +82,8 @@ export default function About() {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid lg:grid-cols-2 gap-16 items-center"
         >
-          {/* Left column - Image */}
-          <motion.div variants={itemVariants} className="relative">
+          {/* Left column - Image with scroll parallax */}
+          <motion.div variants={itemVariants} className="relative" style={{ y: photoY }}>
             <div className="relative">
               <motion.div
                 className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-warm-300/20 rounded-3xl blur-2xl"
@@ -155,7 +163,8 @@ export default function About() {
 
             <motion.a
               variants={itemVariants}
-              href="#contact"
+              href={resumePdf}
+              download="Mark-Anthony-Suerto-CV.pdf"
               className="inline-flex items-center gap-2 bg-warm-900 text-white px-8 py-4 rounded-full font-medium hover:bg-warm-800 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -193,6 +202,43 @@ export default function About() {
               <p className="text-warm-600">{stat.label}</p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Beyond Code — bridge to the video editor showreel */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-24"
+        >
+          <div className="relative overflow-hidden rounded-3xl bg-warm-900 text-warm-50 p-10 lg:p-14">
+            <div className="absolute -top-20 -right-20 w-80 h-80 bg-accent/30 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-16 w-72 h-72 bg-warm-700/40 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+              <div>
+                <span className="text-accent font-medium mb-3 block">Beyond Code</span>
+                <h3 className="text-3xl lg:text-4xl font-bold mb-4">
+                  I also tell stories with <span className="text-accent">moving pictures.</span>
+                </h3>
+                <p className="text-warm-300 text-lg max-w-2xl">
+                  When I'm not shipping ASP.NET features, I edit video — color, cut, and sound.
+                  Take a look at the reel and recent client work.
+                </p>
+              </div>
+              <motion.a
+                href="#reel"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-accent text-white px-7 py-4 rounded-full font-medium text-lg whitespace-nowrap"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                Watch the Reel
+              </motion.a>
+            </div>
+          </div>
         </motion.div>
 
         {/* Tech Stack */}

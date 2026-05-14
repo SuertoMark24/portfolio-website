@@ -1,8 +1,15 @@
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const sectionRef = useRef(null)
+
+  const { scrollY } = useScroll()
+  const headlineY = useTransform(scrollY, [0, 600], [0, -180])
+  const blobY = useTransform(scrollY, [0, 600], [0, -60])
+  const contentOpacity = useTransform(scrollY, [0, 500], [1, 0])
+  const numberY = useTransform(scrollY, [0, 800], [0, 200])
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -38,10 +45,11 @@ export default function Hero() {
   return (
     <section
       id="home"
+      ref={sectionRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
     >
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <motion.div className="absolute inset-0 overflow-hidden" style={{ y: blobY }}>
         <motion.div
           className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"
           animate={{
@@ -65,7 +73,7 @@ export default function Hero() {
           }}
           transition={{ duration: 8, repeat: Infinity }}
         />
-      </div>
+      </motion.div>
 
       {/* Section number */}
       <motion.div
@@ -73,6 +81,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1, duration: 0.8 }}
+        style={{ y: numberY }}
       >
         <span className="text-8xl font-bold text-warm-200">01</span>
       </motion.div>
@@ -82,6 +91,7 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ y: headlineY, opacity: contentOpacity }}
       >
         <motion.div variants={itemVariants} className="mb-6">
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">
