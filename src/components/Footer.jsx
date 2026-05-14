@@ -37,20 +37,6 @@ export default function Footer() {
             © {currentYear} All rights reserved.
           </p>
         </div>
-
-        {/* Back to top */}
-        <div className="flex justify-center mt-8">
-          <motion.a
-            href="#home"
-            className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-colors"
-            whileHover={{ y: -5 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-            </svg>
-          </motion.a>
-        </div>
       </div>
     </footer>
   )
