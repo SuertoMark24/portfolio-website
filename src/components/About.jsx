@@ -1,7 +1,10 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import profilePhoto from '../assets/images/me.png'
-import resumePdf from '../assets/cv/resume.pdf'
+
+// Resume PDF lives in /public so the URL is human-readable
+// (no Vite hash) and right-click → Save As keeps the friendly name.
+const resumePdf = '/Mark-Anthony-Suerto-CV.pdf'
 
 // Tech Stack Icons
 import outlookIcon from '../assets/images/icons/outlook.png'
