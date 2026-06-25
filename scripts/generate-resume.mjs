@@ -136,10 +136,10 @@ const doc = new Document({
           borders: noBorders(),
           rows: [
             contactRow('Address:',   'Negros Occidental, Philippines'),
-            contactRow('Phone:',     '+63 938 294 7924'),
+            contactRow('Phone:',     '+63 956 922 0927'),
             contactRow('Email:',     'markanthonysuerto@gmail.com'),
             contactRow('Portfolio:', 'markanthonysuerto-portfolio.vercel.app'),
-            contactRow('LinkedIn:',  'linkedin.com/in/mark-anthony-suerto-6a06881bb'),
+            contactRow('LinkedIn:',  'linkedin.com/in/mark-anthony-suerto'),
           ],
         }),
 
